@@ -1,0 +1,58 @@
+# CI for moth-flux.
+#
+# ★ WHY THIS EXISTS, and it is not "repos have CI". On 2026-09-13 this repository contained a
+#   README describing a compiler and NOTHING ELSE — every source file was committed to a local
+#   branch in a repo with no remote, so the description shipped without the thing it described,
+#   and nobody noticed until the owner opened the page. A workflow that runs `cargo test` would
+#   have failed on the first push with "no targets", which is exactly the noise that gets looked at.
+#
+# ⚠ The valuable job here is NOT `build`. It is the doc-tests: eight of them are `compile_fail`
+#   cases asserting that FLUX REFUSES things — an Unknown reaching a boolean, a trit literal on the
+#   left of a comparison. A refusal that silently stops refusing is invisible to every other check
+#   in this repository, because nothing breaks. `cargo test --doc` is the only thing watching them.
+name: ci
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: build, test, and prove the refusals still refuse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: toolchain
+        run: rustup toolchain install stable --profile minimal --component clippy,rustfmt
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: build
+        run: cargo build --release --all-targets
+
+      # The exhaustive equivalence proofs. 3^n over the whole input space, not sampled.
+      - name: test
+        run: cargo test --release
+
+      # ⚠ SEPARATE STEP ON PURPOSE. Folding this into `cargo test` hides which half failed, and
+      #   the compile_fail doc-tests are the ones whose failure means the LANGUAGE changed rather
+      #   than the code. They deserve their own red X.
+      - name: doc-tests (includes the compile_fail refusals)
+        run: cargo test --release --doc
+
+      # ⚠ NON-BLOCKING, DELIBERATELY. 57 warnings as of 2026-09-13, none yet triaged. A gate that
+      #   fails on day one is a gate someone disables on day two. It reports; it does not block.
+      #   Turn `continue-on-error` off once the count is actually zero — not before.
+      - name: clippy (advisory)
+        run: cargo clippy --release --all-targets
+        continue-on-error: true
+
+      - name: fmt (advisory)
+        run: cargo fmt --check
+        continue-on-error: true

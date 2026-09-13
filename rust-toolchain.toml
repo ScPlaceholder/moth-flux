@@ -1,0 +1,7 @@
+# Pinned so the exhaustive proofs are reproducible rather than "passed on whatever I had".
+# ⚠ `stable` is a MOVING target and that is accepted here on purpose: this crate is stdlib +
+#   four small deps and has no MSRV commitment yet. If a future rustc breaks a proof, that is a
+#   finding worth seeing, not something to hide behind a pin.
+[toolchain]
+channel = "stable"
+components = ["clippy", "rustfmt"]
