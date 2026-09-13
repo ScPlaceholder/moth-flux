@@ -1,0 +1,12 @@
+[package]
+name = "flux_macro"
+version = "0.1.0"
+edition = "2021"
+
+# ⚠ ZERO dependencies on purpose. The whole compiler is one auditable file; syn/quote would
+#   triple the surface for a grammar of seven operations. If the grammar ever grows real
+#   precedence tables or spans-per-token diagnostics, that is the moment to take syn — not before.
+[lib]
+proc-macro = true
+
+[dependencies]
