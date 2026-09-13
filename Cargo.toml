@@ -2,6 +2,9 @@
 name = "moth_flux"
 version = "0.1.0"
 edition = "2021"
+authors = ["Elah Moth <elahmoth@gmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/ScPlaceholder/moth-flux"
 
 # ⚠ THE COMPARATOR IS rkyv, NOT JSON. Beating serde_json proves nothing — nobody serious uses JSON
 #   where this matters, and a baseline built to lose is how you launder a null result into a win.

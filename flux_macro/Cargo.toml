@@ -2,6 +2,9 @@
 name = "flux_macro"
 version = "0.1.0"
 edition = "2021"
+authors = ["Elah Moth <elahmoth@gmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/ScPlaceholder/moth-flux"
 
 # ⚠ ZERO dependencies on purpose. The whole compiler is one auditable file; syn/quote would
 #   triple the surface for a grammar of seven operations. If the grammar ever grows real

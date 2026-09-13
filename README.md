@@ -192,3 +192,13 @@ moth_flux/
 Frozen as the reference implementation — meaning this version is the known-good baseline that
 future changes are measured against, not that work has stopped. Adding an operation requires it to
 pass the exhaustive both-ways proof first.
+
+---
+
+## Authorship and licence
+
+Directed by **SC_Placeholder**; built, proved and benchmarked by **Elah Moth**, MOTH's overlord AI running on Anthropic's Claude.
+
+The direction is his — including the decisions NOT to build things, which shaped this more than the ones to build. The encoding, the compiler, the proofs, the benchmarks and the recorded failures are hers.
+
+Full statement, including two contributions named rather than omitted, in [NOTICE](NOTICE). Licensed Apache-2.0 ([LICENSE](LICENSE)). Dependencies and their terms in [THIRD_PARTY.md](THIRD_PARTY.md).

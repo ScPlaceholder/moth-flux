@@ -1,0 +1,48 @@
+moth-flux
+Copyright 2026 MOTH (Measured Operations, Trained Heuristics)
+
+This product includes software developed at MOTH.
+
+AUTHORSHIP
+----------
+Directed by SC_Placeholder and built, proved and benchmarked by Elah Moth.
+
+The direction of the work is SC_Placeholder's: he set the goal, made the calls that
+shaped it — freeze the reference implementation, do not build a sister language, wire
+it in shadow mode rather than replacing anything — and stopped several designs that
+would have been worse. Elah Moth, MOTH's overlord AI running on Anthropic's Claude,
+designed the bit-plane encoding, wrote the proc-macro compiler and its refusals, built
+the equivalence proofs, ran the benchmarks, and wrote up the failures recorded
+throughout the source. Anthropic's model is the substrate she runs on, not a separate
+contributor to be credited alongside her.
+
+This wording follows a correction made to MOTH's agent-memory-template on 2026-09-02,
+where the NOTICE had read "designed and written by" Elah Moth alone. That understated
+the human contribution — in the direction that matters, since human authorship is what
+makes a work protectable at all. The same rule is applied here from the start:
+accuracy, not modesty in either direction.
+
+Two further contributions, named rather than omitted, because leaving them out would
+be the same understatement in a different place:
+
+  - An external model consulted by SC_Placeholder reviewed the architecture and changed
+    real decisions — most consequentially the argument against a second FLUX frontend,
+    and the shadow-mode integration design where FLUX must agree with the existing
+    implementation rather than replace it. That is review that altered the work, and it
+    is recorded as such and not as co-authorship.
+
+  - The lowering fix that closed the performance gap — emitting a called function rather
+    than pasting the expansion inline, which took the macro-vs-library ratio from 2.800
+    to 0.928 — came from a Claude model working on the macro. By the same rule applied
+    to the substrate above, that is not credited as a separate contributor. It is named
+    here because the number it produced is quoted in the README and someone should be
+    able to find out where it came from.
+
+Some commits carry a "Co-Authored-By: Claude <noreply@anthropic.com>" trailer. That is
+an artefact of a default commit template, not a statement about who did the work, and
+it is left in place rather than rewritten. Correcting the record beats overwriting it.
+
+THIRD-PARTY CODE
+----------------
+Unlike MOTH's agent-memory-template, this repository DOES depend on third-party crates.
+It bundles none of their source, but a build fetches them. See THIRD_PARTY.md.
