@@ -1,0 +1,26 @@
+# Python doorway to the EXISTING compiled FLUX. Not a second implementation of FLUX semantics —
+# there is no parser here, no lowering, no verifier. It hands bytes to the same `flux!` expressions
+# the Rust binaries use and returns counts. G's distinction, kept structurally: one definition of
+# what FLUX means, more than one host interface.
+[package]
+name = "flux_py"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "flux_py"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module"] }
+moth_flux = { path = ".." }
+
+# Its OWN workspace, deliberately. Adding this to moth_flux's members list would make every
+# `cargo build` in the parent try to link a Python extension, which is a change to the frozen
+# reference implementation's build for the sake of an experiment sitting beside it.
+[workspace]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
