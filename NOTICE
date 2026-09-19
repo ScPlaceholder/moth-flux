@@ -51,7 +51,9 @@ rendered summary disagreed, and only the rendered one is visible without opening
 
 Naming it here rather than rewriting history: the commits stay as they are, and a reader who
 wonders why the header does not match this file now has the answer in the same place as the
-rest of the attribution.
+rest of the attribution. Commits from 2026-09-18 onward carry a Co-Authored-By trailer for
+SC_Placeholder, so the rendered header converges on what this file has said all along. The
+earlier ones are left untouched; the gap they show is documented above rather than erased.
 
 THIRD-PARTY CODE
 ----------------
