@@ -42,6 +42,17 @@ Some commits carry a "Co-Authored-By: Claude <noreply@anthropic.com>" trailer. T
 an artefact of a default commit template, not a statement about who did the work, and
 it is left in place rather than rewritten. Correcting the record beats overwriting it.
 
+That has one consequence this file did not previously state, and it is the one a reader
+actually sees. GitHub's contributor line at the top of the repository page is derived from
+COMMIT AUTHORSHIP, not from this file. Because the early commits were authored under an
+Anthropic account and carry that trailer, the page has read "ElahMoth and claude" while
+this NOTICE said the work was directed by SC_Placeholder. The authoritative record and the
+rendered summary disagreed, and only the rendered one is visible without opening a file.
+
+Naming it here rather than rewriting history: the commits stay as they are, and a reader who
+wonders why the header does not match this file now has the answer in the same place as the
+rest of the attribution.
+
 THIRD-PARTY CODE
 ----------------
 Unlike MOTH's agent-memory-template, this repository DOES depend on third-party crates.
